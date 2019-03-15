@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yogult">
+ 	<select id="getCyclelist" resultType="cycleVo">
+ 		select *
+ 		from cycle
+ 	</select>
+ 	
+ 	<insert id="insertDaily" parameterType="dailyVo">
+ 		insert into daily
+ 		values (#{cid}, #{pid}, #{dt}, #{cnt})
+ 	</insert>
+ 	
+ 	<!-- 입력하려고하는 데이터가 존재하면 update, 없으면 insert
+           입력하려고 하는 데이터 존재 여부를 확인 -->
+  <insert id="mergeDaily" parameterType="dailyVo">
+        merge into daily
+       using dual on(
+           daily.cid = #{cid} and
+           daily.pid = #{pid} and
+           daily.dt = #{dt})
+       --해당 데이터가 존재
+       when matched then update set
+           cnt = #{cnt}
+       when not matched then insert(cid,pid,dt,cnt)
+        values(#{cid},#{pid},#{dt},#{cnt})
+  </insert>
+ 	
+</mapper>
