@@ -7,21 +7,12 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	<typeAliases>
 		<typeAlias alias="cycleVo" type="kr.or.ddit.yogult.model.CycleVo" />
 		<typeAlias alias="dailyVo" type="kr.or.ddit.yogult.model.DailyVo" />
+		<typeAlias alias="batchVo" type="kr.or.ddit.batch.model.BatchVo" />
 	</typeAliases>
 	
-<!-- 	<environments default="development"> -->
-<!-- 		<environment id="development"> -->
-<!-- 			<transactionManager type="JDBC" /> -->
-<!-- 			<dataSource type="POOLED"> -->
-<!-- 				<property name="driver" value="${jdbc.driver}" /> -->
-<!-- 				<property name="url" value="${jdbc.url}" /> -->
-<!-- 				<property name="username" value="${jdbc.username}" /> -->
-<!-- 				<property name="password" value="${jdbc.password}" /> -->
-<!-- 			</dataSource> -->
-<!-- 		</environment> -->
-<!-- 	</environments> -->
 
 	<mappers>
 		<mapper resource="kr/or/ddit/config/db/mapper/yogult.xml" />
+		<mapper resource="kr/or/ddit/config/db/mapper/batch.xml" />
 	</mappers>
 </configuration>
